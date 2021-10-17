@@ -2,6 +2,9 @@ package debugger.jsonb.apple.project;
 
 import java.util.*;
 
+import javax.json.bind.annotation.JsonbCreator;
+import javax.json.bind.annotation.JsonbProperty;
+
 public class OrderDetails {
 	
 	private List<Product> products;
@@ -14,6 +17,16 @@ public class OrderDetails {
 		this.products = product;
 		this.shippingAddress = address;
 		this.totalAmount = totalAmount;
+	}
+	
+	// Custom constructor to enforce certain fields show in our deserialization process
+	@JsonbCreator
+	public OrderDetails(@JsonbProperty("products") List<Product> products, @JsonbProperty("city") String city,
+			@JsonbProperty("country") String country, @JsonbProperty("street") String street,
+			@JsonbProperty("zipcode") int zipcode, @JsonbProperty("totalAmount") double totalAmount) {
+	    	this.products = products;
+		    this.shippingAddress = new Address(street, city, country, zipcode);
+		    this.totalAmount = totalAmount;
 	}
 
 	public List<Product> getProducts() {
