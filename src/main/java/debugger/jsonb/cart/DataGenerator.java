@@ -17,14 +17,11 @@ public class DataGenerator {
 	 */
 	public static Order getData() {
 		
-		// 
-		
 		Address address = new Address();
 		address.setCity("Johannessburg");
         address.setCountry("South Africa");
         address.setZipcode(1782);
         address.setStreetName("Airdlin Rd, Paulshof");	
-        
         
         List<Product> products = new ArrayList<>();
         products.add(new Product(1, "iPhone SE", "phones", "Apple Inc.", 9000));
@@ -34,10 +31,9 @@ public class DataGenerator {
         
         OrderDetails orderDetails = new OrderDetails(products, address, 1763.863);
         
-        
         Customer customer = new Customer(1, "Muzi Debugger", "muzidebugger@gmail.com");
         
-        Order order = new Order(1, orderDetails, LocalDate.parse("2018-08-01"), LocalDate.parse("2018-08-10"), customer);
+        Order order = new Order(1, orderDetails, LocalDate.parse("2021-08-01"), LocalDate.parse("2021-08-10"), customer);
         
         return order;
 	}
